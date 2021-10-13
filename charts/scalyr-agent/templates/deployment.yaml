@@ -62,6 +62,16 @@ spec:
             - name: http
               containerPort: 80
               protocol: TCP
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            exec:
+              command:
+              - scalyr-agent-2
+              - status
+              - -H
+            initialDelaySeconds: 60
+            periodSeconds: 60
+          {{- end }}
           env:
             - name: "SCALYR_SERVER"
               value: {{ .Values.scalyr.server }}
