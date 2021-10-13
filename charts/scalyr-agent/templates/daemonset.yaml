@@ -67,10 +67,6 @@ spec:
             initialDelaySeconds: 60
             periodSeconds: 60
           {{- end }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
           env:
             - name: "SCALYR_SERVER"
               value: {{ .Values.scalyr.server }}
